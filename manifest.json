@@ -24,23 +24,10 @@
 		{
 			"js": [
 				"js/jquery.js",
-				"js/google.js"
+				"js/linkedIn.js"
 			],
 			"matches": [
-				"https://www.google.com/*",
-				"https://www.google.co.nz/*",
-				"https://www.google.com.au/*",
-				"https://www.google.ca/*"
-			],
-			"run_at":    "document_end"
-		},
-		{
-			"js": [
-				"js/jquery.js",
-				"js/emailfindr.js"
-			],
-			"matches": [
-				"*://emailfindr.net/*"
+				"https://www.linkedin.com/*"
 			],
 			"run_at":    "document_end"
 		}
@@ -58,11 +45,11 @@
 
 	"icons": {
 		"16": "img/16.png",
-		"18": "img/18.png",
-		"19": "img/19.png",
+		"18": "img/16.png",
+		"19": "img/32.png",
 		"32": "img/32.png",
-		"38": "img/38.png",
-		"48": "img/48.png",
+		"38": "img/32.png",
+		"48": "img/32.png",
 		"64": "img/64.png",
 		"96": "img/96.png",
 		"128": "img/128.png"

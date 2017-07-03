@@ -9,6 +9,7 @@
 	
 	"permissions": [
 		"https://www.linkedin.com/*",
+		"https://www.linkedin.cn/*",
 		"storage",
 		"tabs"
 	],

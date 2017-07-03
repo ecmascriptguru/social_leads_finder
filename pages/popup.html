@@ -7,6 +7,50 @@
 </head>
 <body>
 	<div class="wrapper">
+		<div class="panel panel-default" id="start-panel" style="display:none;">
+			<div class="panel-heading">
+				<h3>Making your life easy.</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="keyword">Keyword</label>
+					<input type="text" id="keyword" placeholder="Enter keyword here." class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="max-pages">Max Pages.(0 = infinitive)</label>
+					<input type="number" id="max-pages" class="form-control" placeholder="Leave blank for infinite search." />
+				</div>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-6">
+						<button id="start" class="btn btn-primary form-control">Start Now</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="panel panel-default" id="stop-panel" style="display:none;">
+			<div class="panel-heading">
+				<h3>Scraping is in progress.</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<h5>Current keyword is <strong id="info-keyword"></strong></h5>
+				</div>
+				<div class="form-group">
+					<h5>Currently this tool is checking the <strong id="info-cur-page"></strong>th page.</h5>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-6">
+						<button id="stop" class="btn btn-danger form-control">Stop</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="/js/jquery.js"></script>
 	<script src="/js/common.js"></script>

@@ -39,12 +39,19 @@ let LinkedInScraper = (function() {
             emails.push($emails.eq(i).text().trim());
         }
         emails = emails.join("|");
+        // ci-phone
+        let $phones = $(".ci-phone .pv-contact-info__contact-item");
+        let phones = [];
+        for (let i = 0; i < $phones.length; i ++) {
+            phones.push($phones.eq(i).text().trim());
+        }
+        phones = phones.join("|");
         
         chrome.runtime.sendMessage({
             from: "linkedin",
             action: "profile",
             profile: {
-                name, headline, location, webSites, emails
+                name, headline, location, webSites, emails, phones
             }
         })
     }

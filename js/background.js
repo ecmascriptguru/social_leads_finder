@@ -30,14 +30,15 @@ let Background = (function() {
 		let keyword = JSON.parse(localStorage._keyword || "null") || "No-keyword";
         let profiles = _profiles;
         
-        let header = ["name", "location", "headline", "emails", "webSites"];
+        let header = ["name", "location", "headline", "webSites", "emails", "phones"];
 		if (profiles.length > 0) {
 			data = profiles.map(p => toLine([
 					p.name,
 					p.location,
 					p.headline,
+					p.webSites,
 					p.emails,
-					p.webSites
+					p.phones
 			]));
 			
 			data.unshift(toLine(header))

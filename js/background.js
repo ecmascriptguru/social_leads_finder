@@ -24,8 +24,36 @@ let Background = (function() {
 	}
 
 	const downloadToCSV = () => {
-		LinkedInScraper.toCSV();
-	}
+        const toLine = arr => arr.map(x => `"${(x + "").replace(/"/g, '""')}"`).join(",");
+        let data = null;
+        let profiles = _profiles;
+        
+        let header = ["name", "location", "headline", "emails", "webSites"];
+        data = profiles.map(p => toLine([
+                p.name,
+                p.location,
+                p.headline,
+                p.emails,
+                p.webSites
+        ]));
+        
+        data.unshift(toLine(header))
+
+        downloadPlaintext(data.join("\n"), `Social Leads-${new Date().toISOString()}.csv`)
+    }
+
+
+    const downloadPlaintext = function(data, filename) {
+        let blob = new Blob([data], { type: "text/plain" })
+
+        let el = document.createElement("a")
+        el.href = URL.createObjectURL(blob)
+        el.download = filename
+        document.body.appendChild(el)
+        el.click()
+        document.body.removeChild(el)
+    }
+
 
 	const stop = (callback) => {
 		localStorage._started = JSON.stringify(false);
@@ -120,6 +148,9 @@ let Background = (function() {
 						if (_profileTabId == sender.tab.id) {
 							let profile = request.profile;
 							_profiles.push(profile);
+							if (_profiles.length > 10000) {
+								downloadToCSV();
+							}
 							if (_profileTabId) {
 								chrome.tabs.remove(_profileTabId, () => {
 									_profileTabId = null;
@@ -142,7 +173,8 @@ let Background = (function() {
 		start: start,
 		stop: stop,
 		state: state,
-		profiles: profiles
+		profiles: profiles,
+		toCSV: downloadToCSV
 	};
 })();
 

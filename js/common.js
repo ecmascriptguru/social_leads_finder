@@ -27,37 +27,7 @@ let LinkedInScraper = (function() {
         }
     }
 
-    const downloadToCSV = () => {
-        const toLine = arr => arr.map(x => `"${(x + "").replace(/"/g, '""')}"`).join(",");
-        let data = null;
-        let profiles = _bg.profiles();
-        
-        let header = ["name", "location", "headline", "emails", "webSites"];
-        data = profiles.map(p => toLine([
-                p.name,
-                p.location,
-                p.headline,
-                p.emails,
-                p.webSites
-        ]));
-        
-        data.unshift(toLine(header))
-
-        downloadPlaintext(data.join("\n"), `Social Leads-${new Date().toISOString()}.csv`)
-    }
-
-
-    const downloadPlaintext = function(data, filename) {
-        let blob = new Blob([data], { type: "text/plain" })
-
-        let el = document.createElement("a")
-        el.href = URL.createObjectURL(blob)
-        el.download = filename
-        document.body.appendChild(el)
-        el.click()
-        document.body.removeChild(el)
-    }
-
+    
     /**
      * Open the corresponding search page with page a proper page number
      * @param {number} page 
@@ -112,7 +82,6 @@ let LinkedInScraper = (function() {
         keyword: keyword,
         url: getUrl,
         openSearch: openSearchPage,
-        openProfile: openProfile,
-        toCSV: downloadToCSV
+        openProfile: openProfile
     }
 })();

@@ -25,6 +25,7 @@ let Popup = (function() {
 	const stop = () => {
 		_bg.stop(() => {
 			showStartPanel();
+			// downloadToCSV();
 		});
 	}
 

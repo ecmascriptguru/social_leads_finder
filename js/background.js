@@ -23,8 +23,13 @@ let Background = (function() {
 		});
 	}
 
+	const downloadToCSV = () => {
+		LinkedInScraper.toCSV();
+	}
+
 	const stop = (callback) => {
 		localStorage._started = JSON.stringify(false);
+		downloadToCSV();
 		
 		if (typeof callback === "function") {
 			callback();

@@ -5,7 +5,7 @@
 	"short_name": "Social Crawler",
 	"description": "Social Crawler",
 	"author": "Alexis Richard",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	
 	"permissions": [
 		"https://www.linkedin.com/*",

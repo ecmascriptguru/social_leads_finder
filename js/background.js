@@ -14,6 +14,7 @@ let Background = (function() {
 	const start = (keyword, callback) => {
 		localStorage._page = JSON.stringify(1);
 		localStorage._started = JSON.stringify(true);
+		localStorage._keyword = JSON.stringify(keyword);
 		LinkedInScraper.openSearch(1, (tabId) => {
 			_searchTabId = tabId;
 			_step = "search";

@@ -70,6 +70,8 @@ let LinkedInScraper = (function() {
      * @return {string}
      */
     const getUrl = () => {
+        _keyword = JSON.parse(localStorage._keyword || "null") || "";
+        _page = JSON.parse(localStorage._page || "null") || 1;
         if (_page == 1) {
             return `https://www.linkedin.com/search/results/index/?origin=GLOBAL_SEARCH_HEADER&keywords=${_keyword}`;
         } else {

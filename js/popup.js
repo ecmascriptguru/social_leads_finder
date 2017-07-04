@@ -73,6 +73,8 @@ let Popup = (function() {
 		initEvents();
 		$keyword.val(_keyword);
 		$maxPages.val(_maxPages);
+		$("#info-keyword").text(_keyword);
+		$("#info-cur-page").text(JSON.parse(localStorage._page || "null"));
 
 		let curState = _bg.state();
 

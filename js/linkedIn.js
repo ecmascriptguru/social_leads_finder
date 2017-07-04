@@ -24,9 +24,9 @@ let LinkedInScraper = (function() {
     }
 
     const parseProfile = () => {
-        let name = $("h1.pv-top-card-section__name").text();
-        let headline = $("h2.pv-top-card-section__headline").text();
-        let location = $("h3.pv-top-card-section__location").text();
+        let name = $("h1.pv-top-card-section__name").text().trim();
+        let headline = $("h2.pv-top-card-section__headline").text().trim();
+        let location = $("h3.pv-top-card-section__location").text().trim();
         let $webSites = $(".ci-websites .pv-contact-info__ci-container a.pv-contact-info__action");
         let webSites = [];
         for (let i = 0; i < $webSites.length; i ++) {

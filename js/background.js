@@ -27,6 +27,7 @@ let Background = (function() {
 	const downloadToCSV = () => {
         const toLine = arr => arr.map(x => `"${(x + "").replace(/"/g, '""')}"`).join(",");
         let data = null;
+		let keyword = JSON.parse(localStorage._keyword || "null") || "No-keyword";
         let profiles = _profiles;
         
         let header = ["name", "location", "headline", "emails", "webSites"];
@@ -41,7 +42,7 @@ let Background = (function() {
 			
 			data.unshift(toLine(header))
 
-			downloadPlaintext(data.join("\n"), `Social Leads-${new Date().toISOString()}.csv`)
+			downloadPlaintext(data.join("\n"), `${keyword}-${new Date().toISOString()}.csv`)
 		}
     }
 

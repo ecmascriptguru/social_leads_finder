@@ -7,7 +7,10 @@ let LinkedInScraper = (function() {
         let urls = [];
 
         for (let i = 0; i < profiles.length; i ++) {
-            let url = profiles.eq(i).find(".search-result__result-link")[0].href;
+            let url = (profiles.eq(i).find(".search-result__result-link")[0] || {}).href;
+            if (!url) {
+                continue;
+            }
             urls.push(url);
         }
 

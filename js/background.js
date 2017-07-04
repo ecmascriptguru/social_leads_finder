@@ -30,17 +30,19 @@ let Background = (function() {
         let profiles = _profiles;
         
         let header = ["name", "location", "headline", "emails", "webSites"];
-        data = profiles.map(p => toLine([
-                p.name,
-                p.location,
-                p.headline,
-                p.emails,
-                p.webSites
-        ]));
-        
-        data.unshift(toLine(header))
+		if (profiles.length > 0) {
+			data = profiles.map(p => toLine([
+					p.name,
+					p.location,
+					p.headline,
+					p.emails,
+					p.webSites
+			]));
+			
+			data.unshift(toLine(header))
 
-        downloadPlaintext(data.join("\n"), `Social Leads-${new Date().toISOString()}.csv`)
+			downloadPlaintext(data.join("\n"), `Social Leads-${new Date().toISOString()}.csv`)
+		}
     }
 
 
@@ -66,10 +68,9 @@ let Background = (function() {
 	}
 
 	const openSearchPage = (page, callback) => {
+		_step = "search";
 		LinkedInScraper.openSearch(page, (tabId) => {
 			_searchTabId = tabId;
-			_step = "search";
-
 			if (typeof callback === "function") {
 				callback();
 			}
@@ -86,7 +87,11 @@ let Background = (function() {
 	const checkUrls = () => {
 		if (_urls.length > 0) {
 			let url = _urls.pop();
-			visitProfile(url);
+			if (url.match(/\/search\/results\/index\//g)) {
+				checkUrls();
+			} else {
+				visitProfile(url);
+			}
 		} else {
 			let page = JSON.parse(localStorage._page);
 
@@ -149,8 +154,9 @@ let Background = (function() {
 						if (_profileTabId == sender.tab.id) {
 							let profile = request.profile;
 							_profiles.push(profile);
-							if (_profiles.length > 10000) {
+							if (_profiles.length > 20) {
 								downloadToCSV();
+								_profiles = [];
 							}
 							if (_profileTabId) {
 								chrome.tabs.remove(_profileTabId, () => {

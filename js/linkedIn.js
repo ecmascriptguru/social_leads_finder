@@ -36,7 +36,7 @@ let LinkedInScraper = (function() {
         let $emails = $(".ci-email .pv-contact-info__contact-item");
         let emails = [];
         for (let i = 0; i < $emails.length; i ++) {
-            emails.push($emails.eq(i).text());
+            emails.push($emails.eq(i).text().trim());
         }
         emails = emails.join("|");
         
